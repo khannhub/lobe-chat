@@ -25,10 +25,10 @@ jobs:
       - name: Install Vercel CLI
         run: bun add -g vercel
 
-      - name: Recreate .vercel/project.json
-        run: |
-          mkdir -p .vercel
-          echo "{\"orgId\":\"${{ secrets.VERCEL_ORG_ID }}\",\"projectId\":\"${{ secrets.VERCEL_PROJECT_ID }}\"}" > .vercel/project.json
+      - name: Pull Vercel Project Settings
+        run: vercel pull --yes --environment=production --token $VERCEL_TOKEN
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
       - name: Run Vercel Build (generate .vercel/output)
         run: vercel build --token $VERCEL_TOKEN
