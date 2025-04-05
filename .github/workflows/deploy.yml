@@ -11,13 +11,12 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Install Bun
-        shell: bash
-        run: |
-          curl -fsSL https://bun.sh/install | bash
-          echo "$HOME/.bun/bin" >> $GITHUB_PATH
+      - name: Install bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: ${{ secrets.BUN_VERSION }}
 
       - name: Install Dependencies
         run: bun install
@@ -36,6 +35,6 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Vercel
-        run: vercel deploy --prebuilt --prod --token $VERCEL_TOKEN
+        run: vercel deploy --prebuilt --prod deploy --archive=tgz --token $VERCEL_TOKEN
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
