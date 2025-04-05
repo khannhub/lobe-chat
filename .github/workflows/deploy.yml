@@ -1,4 +1,4 @@
-name: Deploy to Vercel via Bun (Production Build & Deploy)
+name: Deploy to Vercel
 
 on:
   push:
@@ -25,17 +25,17 @@ jobs:
       - name: Install Vercel CLI
         run: bun add -g vercel
 
-      - name: Pull Vercel Project Settings (Production)
+      - name: Pull Vercel Project Settings
         run: vercel pull --yes --environment=production --token $VERCEL_TOKEN
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
-      - name: Run Vercel Build (Production)
+      - name: Run Vercel Build
         run: vercel build --prod --token $VERCEL_TOKEN
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
-      - name: Deploy to Vercel (Prebuilt Production)
+      - name: Deploy to Vercel
         run: vercel deploy --prebuilt --prod --token $VERCEL_TOKEN
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
