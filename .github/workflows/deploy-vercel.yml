@@ -9,10 +9,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - if: ${{ !secrets.VERCEL_TOKEN }}
-        run:
-          exit 1
-
       - name: Checkout Code
         uses: actions/checkout@v4
 
