@@ -55,7 +55,7 @@ jobs:
         uses: actions-cool/pr-welcome@main
         if: github.event.pull_request.merged == true
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           comment: |
             ❤️ Great PR @${{ github.event.pull_request.user.login }} ❤️
 
@@ -68,6 +68,6 @@ jobs:
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'remove-labels'
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.issue.number }}
           labels: 'Inactive'

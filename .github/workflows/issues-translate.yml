@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: usthe/issues-translate-action@v2.7
         with:
-          BOT_GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          BOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

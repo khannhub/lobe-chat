@@ -16,4 +16,4 @@ jobs:
       - uses: OrlovM/Wiki-Action@v1
         with:
           path: 'contributing'
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}

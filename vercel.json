@@ -1,6 +1,12 @@
 {
   "buildCommand": "NODE_OPTIONS=--max-old-space-size=6144 bun run build",
   "installCommand": "bun install",
+  "builds": [
+    {
+      "src": ".",
+      "use": "@vercel/static"
+    }
+  ],
   "git": {
     "deploymentEnabled": false
   }
