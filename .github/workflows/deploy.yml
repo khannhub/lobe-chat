@@ -12,10 +12,19 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - uses: amondnet/vercel-action@v25
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-project-id: ${{ secrets.PROJECT_ID}}
-          vercel-org-id: ${{ secrets.ORG_ID}}
-          vercel-args: --prod --prebuilt
+          bun-version: ${{ secrets.BUN_VERSION }}
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Install Vercel CLI
+        run: bun add vercel
+
+      - name: Build Project with Vercel
+        run: bunx vercel build -t ${{ secrets.VERCEL_TOKEN }} --prod --yes
+
+      - name: Deploy to Vercel
+        run: bunx vercel deploy -t ${{ secrets.VERCEL_TOKEN }} --prod --yes --prebuilt --archive=tgz
