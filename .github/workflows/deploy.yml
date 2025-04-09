@@ -18,4 +18,4 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-project-id: ${{ secrets.PROJECT_ID}}
           vercel-org-id: ${{ secrets.ORG_ID}}
-          vercel-args: --prod --yes --prebuilt --archive=tgz
+          vercel-args: --prod --prebuilt --archive=tgz
