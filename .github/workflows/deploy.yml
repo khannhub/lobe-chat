@@ -29,7 +29,10 @@ jobs:
         run: bun add vercel
 
       - name: Build Project with Vercel
-        run: bunx vercel build -t ${{ secrets.VERCEL_TOKEN }} --prod --yes
+        run: bunx vercel build --token ${{ secrets.VERCEL_TOKEN }} --prod --yes
 
       - name: Deploy to Vercel
-        run: bunx vercel deploy -t ${{ secrets.VERCEL_TOKEN }} --prod --yes --prebuilt --archive=tgz
+        run: bunx vercel deploy --token ${{ secrets.VERCEL_TOKEN }} --prod --yes --prebuilt --archive=tgz
+
+      - name: Remove old deployments
+        run: bunx vercel remove lobe-chat --token ${{ secrets.VERCEL_TOKEN }} --yes --safe
