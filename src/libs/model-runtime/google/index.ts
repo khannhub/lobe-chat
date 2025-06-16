@@ -66,9 +66,11 @@ enum HarmBlockThreshold {
 }
 
 function getThreshold(model: string): HarmBlockThreshold {
-  // if (modelsOffSafetySettings.has(model)) {
-  //   return 'OFF' as HarmBlockThreshold; // https://discuss.ai.google.dev/t/59352
-  // }
+  if (modelsOffSafetySettings.has(model)) {
+    return HarmBlockThreshold.BLOCK_NONE;
+    // Turn off safety settings for all models
+    // return 'OFF' as HarmBlockThreshold; // https://discuss.ai.google.dev/t/59352
+  }
   return HarmBlockThreshold.BLOCK_NONE;
 }
 
@@ -125,7 +127,7 @@ export class LobeGoogleAI implements LobeRuntimeAI {
       const thinkingConfig: GoogleAIThinkingConfig = {
         includeThoughts:
           thinking?.type === 'enabled' ||
-          (!thinking && model && (model.includes('-2.5-') || model.includes('thinking')))
+            (!thinking && model && (model.includes('-2.5-') || model.includes('thinking')))
             ? true
             : undefined,
         thinkingBudget:
