@@ -70,9 +70,9 @@ enum HarmBlockThreshold {
 }
 
 function getThreshold(model: string): HarmBlockThreshold {
-  if (modelsOffSafetySettings.has(model)) {
-    return 'OFF' as HarmBlockThreshold; // https://discuss.ai.google.dev/t/59352
-  }
+  // if (modelsOffSafetySettings.has(model)) {
+  //   return 'OFF' as HarmBlockThreshold; // https://discuss.ai.google.dev/t/59352
+  // }
   return HarmBlockThreshold.BLOCK_NONE;
 }
 
